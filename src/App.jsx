@@ -2,23 +2,32 @@ import "./App.css";
 import ProductCardContainer from "./components/ProductCardContainer";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
+import { useState } from "react";
 
 function App() {
+  const [cartItems, setCartItems] = useState(0);
+
+ const addToCart = () => {
+    setCartItems(cartItems+1);
+ };
+ const user = {
+  firstName: "Olivia",
+  lastName: "Parker",
+  itemsInCart: cartItems
+};
+
   return (
     <main className="store">
+      
       <NavBar user={user} />
-      <ProductCardContainer products={products} />
+      <ProductCardContainer products={products} addToCart={addToCart} />
       <Footer />
     </main>
   );
 }
 export default App;
 
-const user = {
-  firstName: "Olivia",
-  lastName: "Parker",
-  itemsInCart: 0,
-};
+
 
 const products = [
   {
